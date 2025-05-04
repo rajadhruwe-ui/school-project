@@ -61,4 +61,14 @@ class Kernel extends ConsoleKernel
     {
         return config('app.timezone');
     }
+    protected $middlewareGroups = [
+        'web' => [
+            // other middleware...
+            \App\Http\Middleware\TrackVisits::class,
+        ],
+    ];
+    protected $routeMiddleware = [
+        // other middleware...
+        'track.visits' => \App\Http\Middleware\TrackVisits::class,
+    ];    
 }

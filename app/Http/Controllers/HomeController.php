@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Visitor;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalVisitors = Visitor::count();
+        $totalVisits = Visit::count();
+
+        return view('welcome', compact('totalVisitors', 'totalVisits'));
+        
     }
 }

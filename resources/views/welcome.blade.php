@@ -56,48 +56,56 @@
                     <h5>Today's Visitors: <span id="today-visitors">...</span></h5>
                     <h5>Active Visitors (Last 30 mins): <span id="realtime-visitors">...</span></h5>
                 </div>
+                <div class="mt-4">
+                    <button onclick="fetchVisitorStats()" class="bg-blue-600 text-white px-4 py-2 rounded">Refresh</button>
+                </div>
+                <div>
+                    <p>Total Unique Visitors: {{ $totalVisitors }}</p>
+                    <p>Total Visits: {{ $totalVisits }}</p>
+                </div>
             </div>
+
         </section>
 
     </div>
     @push('scripts')
-<script>
-    function fetchVisitorStats() {
-        fetch("{{ route('visitor.track') }}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        });
+    <script>
+        function fetchVisitorStats() {
+            fetch("{{ route('visitor.track') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
 
-        fetch('/visitors/total')
-            .then(res => res.json())
-            .then(data => document.getElementById('total-visitors').textContent = data.total_unique_visitors);
+            fetch('/visitors/total')
+                .then(res => res.json())
+                .then(data => document.getElementById('total-visitors').textContent = data.total_unique_visitors);
 
-        fetch('/visitors/today')
-            .then(res => res.json())
-            .then(data => document.getElementById('today-visitors').textContent = data.today_unique_visitors);
+            fetch('/visitors/today')
+                .then(res => res.json())
+                .then(data => document.getElementById('today-visitors').textContent = data.today_unique_visitors);
 
-        fetch('/visitors/realtime')
-            .then(res => res.json())
-            .then(data => document.getElementById('realtime-visitors').textContent = data.active_visitors);
-    }
-
-    document.addEventListener('DOMContentLoaded', fetchVisitorStats);
-</script>
-<script>
-    fetch("{{ route('visitor.track') }}", {
-        method: "GET",
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
+            fetch('/visitors/realtime')
+                .then(res => res.json())
+                .then(data => document.getElementById('realtime-visitors').textContent = data.active_visitors);
         }
-    })
-    .then(response => response.json())
-    .then(data => console.log("Tracked visitor:", data));
-</script>
 
-@endpush
+        document.addEventListener('DOMContentLoaded', fetchVisitorStats);
+    </script>
+    <script>
+        fetch("{{ route('visitor.track') }}", {
+                method: "GET",
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => console.log("Tracked visitor:", data));
+    </script>
+
+    @endpush
 </main>
 
 @endsection
