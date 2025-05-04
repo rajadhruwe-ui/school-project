@@ -7,16 +7,20 @@
     <div class="max-w-7xl mx-auto py-8 px-4">
 
         <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-blue-900 to-blue-600 text-white py-20" data-aos="fade-down">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="zoom-in">Welcome to My School</h1>
-                <p class="text-lg md:text-xl mb-6" data-aos="fade-up">Empowering students with knowledge and character</p>
-                <a href="/admission" class="bg-white text-blue-900 px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-100 transition"
-                    data-aos="fade-up" data-aos-delay="300">
-                    Apply Now
+        <section class="bg-success text-white py-5" data-aos="fade-down">
+            <div class="container text-center px-4">
+                <h1 class="display-4 fw-bold mb-3" data-aos="zoom-in">Welcome to My School</h1>
+                <p class="lead mb-4" data-aos="fade-up">Empowering students with knowledge and character</p>
+
+                <a href="/admission"
+                    class="btn btn-light text-success fw-semibold rounded-pill px-4 py-2 shadow-sm"
+                    data-aos="fade-up" data-aos-delay="200">
+                    🎒 Apply Now
                 </a>
             </div>
         </section>
+
+
 
         <!-- Features Section -->
         <section class="py-16 bg-gray-100">

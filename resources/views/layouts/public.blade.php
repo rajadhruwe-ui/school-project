@@ -5,59 +5,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Kopal School')</title>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Social Media Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000, // animation duration
-            once: true, // animation only once
-        });
-    </script>
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
+    <!-- Bootstrap CSS & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+        }
+
+        .school-logo {
+            max-height: 60px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .fade-out {
+            transition: opacity 0.5s ease-out;
+            opacity: 0;
+        }
+    </style>
+
     @stack('styles')
 </head>
 
 <body>
 
-    {{-- Header --}}
-    @include('partials.header')
+    <!-- Header with Monogram -->
+    <header class="bg-light shadow-sm sticky-top">
+        <div class="container py-2 d-flex justify-content-between align-items-center">
+            
+            <button class="btn btn-outline-primary d-md-none" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        @include('partials.header')
+    </header>
 
-    {{-- Main Content --}}
-    <main class="container mt-4">
+    <!-- Main Content -->
+    <main class="container my-4" data-aos="fade-up">
         @yield('content')
     </main>
 
-    {{-- Footer --}}
+    <!-- Footer -->
     @include('partials.footer')
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    @stack('scripts')
- <!-- for messege popup a while -->
- <script>
-    setTimeout(() => {
-        const alertBox = document.querySelector('.alert');
-        if (alertBox) {
-            alertBox.classList.remove('show');
-            alertBox.classList.add('fade');
-            setTimeout(() => alertBox.remove(), 500); // Optional cleanup
-        }
-    }, 4000); // 4 seconds
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
 
-<!-- for message popup a while -->
+        // Mobile Menu Toggle (if applicable)
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('d-none');
+                });
+            }
+
+            // Auto-hide alerts
+            setTimeout(() => {
+                const alertBox = document.querySelector('.alert');
+                if (alertBox) {
+                    alertBox.classList.add('fade-out');
+                    setTimeout(() => alertBox.remove(), 500);
+                }
+            }, 4000);
+        });
+    </script>
+
+    @stack('scripts')
 
 </body>
 
