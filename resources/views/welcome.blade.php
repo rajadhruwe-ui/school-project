@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'About Us - Kopal School')
+@section('title', 'About Us - Kopal Public School')
 
 @section('content')
 <main class="flex-grow">

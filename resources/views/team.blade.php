@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Our Team | Kopal School')
+@section('title', 'Our Team | Kopal Public School')
 
 @section('content')
 <div class="container py-5">

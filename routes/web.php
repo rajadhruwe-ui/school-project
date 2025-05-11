@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Visitor;
 use App\Models\Visit;
+use App\Http\Controllers\Admin\AdminDashboardController;
+
 use App\Http\Controllers\{
     ProfileController,
     VisitorController,
@@ -18,6 +20,8 @@ use App\Http\Controllers\{
     Auth\AuthenticatedSessionController,
     AboutUsController
 };
+use App\Http\Controllers\ImageController; // Ensure this class exists in the specified namespace
+use Illuminate\Support\Facades\Auth;
 
 #------------ Visitor Count Routes -----------
 Route::middleware('web')->group(function () {
@@ -39,6 +43,21 @@ Route::get('/results', [ResultsController::class, 'index'])->name('results');
 Route::get('/student-portal', [StudentPortalController::class, 'index'])->name('student-portal');
 Route::get('/contact', [ContactController::class, 'publicIndex'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+#------------ Image Gallery Routes -----------
+Route::get('/gallery', [GalleryController::class, 'publicIndex'])->name('gallery');
+Route::get('/gallery/create', [GalleryController::class, 'create'])->middleware('auth');
+Route::post('/gallery', [GalleryController::class, 'store'])->middleware('auth')->name('gallery.store');
+
+#------------ Admin Routes -----------
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
 
 #------------ Home Page with Visitor Data -----------
 Route::get('/', function () {
@@ -64,5 +83,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 require __DIR__ . '/auth.php';
+

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Kopal School')</title>
+    <title>@yield('title', 'Kopal Public School, Amleshwar')</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Bootstrap CSS & Font Awesome -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- AOS Animation -->
@@ -46,12 +46,6 @@
 
     <!-- Header with Monogram -->
     <header class="bg-light shadow-sm sticky-top">
-        <div class="container py-2 d-flex justify-content-between align-items-center">
-            
-            <button class="btn btn-outline-primary d-md-none" id="menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
         @include('partials.header')
     </header>
 
@@ -64,10 +58,14 @@
     @include('partials.footer')
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true
+        });
 
         // Mobile Menu Toggle (if applicable)
         document.addEventListener('DOMContentLoaded', () => {
@@ -79,7 +77,7 @@
                 });
             }
 
-            // Auto-hide alerts
+            // Auto-hide alerts after 4 seconds
             setTimeout(() => {
                 const alertBox = document.querySelector('.alert');
                 if (alertBox) {

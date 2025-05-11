@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home | Kopal Public School')
+
 @section('content')
 
 <!-- Hero Section -->

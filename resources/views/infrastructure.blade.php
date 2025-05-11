@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Infrastructure - Kopal School')
+@section('title', 'Infrastructure - Kopal Public School')
 
 @section('content')
     <div class="row">

@@ -70,5 +70,7 @@ class Kernel extends ConsoleKernel
     protected $routeMiddleware = [
         // other middleware...
         'track.visits' => \App\Http\Middleware\TrackVisits::class,
+        'admin' => \App\Http\Middleware\IsAdmin::class,
+
     ];    
 }
