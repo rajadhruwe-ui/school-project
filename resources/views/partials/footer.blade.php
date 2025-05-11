@@ -47,7 +47,7 @@
             <a href="https://facebook.com" class="text-primary me-3" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://twitter.com" class="text-info me-3" target="_blank"><i class="fab fa-twitter"></i></a>
             <a href="https://instagram.com" class="text-danger me-3" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com" class="text-danger me-3" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.youtube.com/@Kopalpublicschool/shorts" class="text-danger me-3" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://linkedin.com" class="text-primary" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
 
